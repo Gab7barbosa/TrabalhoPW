@@ -1,5 +1,5 @@
 <?php
-require_once "conexao.php";
+include "conexao.php";
 
 $stmt = $pdo -> query('SELECT * FROM autores ORDER BY id DESC');
 $autores= $stmt ->fetchALL();
@@ -13,4 +13,6 @@ $autores= $stmt ->fetchALL();
 </head>
 <body>
    <h2>gestão de autores</h2>
+   <h2>gestão de livros</h2>
+   <h2>funcionarios</h2>
 </html>

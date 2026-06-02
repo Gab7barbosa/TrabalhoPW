@@ -2,7 +2,6 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "ST_biblioteca";
+$dbname = "biblioteca_cruds";
 
 $conn = new pdo($servername, $username, $password, $dbname);
- ?>
