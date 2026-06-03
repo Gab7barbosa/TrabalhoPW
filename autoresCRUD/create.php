@@ -1,39 +1,82 @@
 <?php
-include "conexao.php";
+require_once "../conexao.php";
 
-$erro = '';
+$erro = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
- 
-    if ($action === 'create') {
-        $nome     = trim($_POST['nome']    ?? '');
-        $país    = trim($_POST['país']   ?? '');
-        $nascimento = trim($_POST['DTnascimento'] ?? '');
- 
-        if (!$nome)                      $errors[] = 'Nome é obrigatório.';
- 
-        if (!$errors) {
-            $stmt = $db->prepare("INSERT INTO autores (nome, país, nascimento) VALUES (:n,:e,:t)");
-            $stmt->bindValue(':n', $nome);
-            $stmt->bindValue(':e', $pais);
-            $stmt->bindValue(':t', $nascimento ?: null);
-            if ($stmt->execute()) {
-                redirect('index.php?success=criado');
-            } else {
-                $errors[] = 'E-mail já cadastrado.';
-            }
-        }
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    $nome = trim($_POST['nome']);
+    $nacionalidade = trim($_POST['nacionalidade']);
+    $data_nascimento = $_POST['data_nascimento'];
+
+    if(
+        empty($nome) ||
+        empty($nacionalidade) ||
+        empty($data_nascimento)
+    ){
+        $erro = "Preencha todos os campos.";
+    }else{
+
+        $sql = "INSERT INTO autores
+                (nome,nacionalidade,data_nascimento)
+                VALUES (?,?,?)";
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->execute([
+            $nome,
+            $nacionalidade,
+            $data_nascimento
+        ]);
+
+        header(
+            "Location:index.php?msg=Autor cadastrado com sucesso"
+        );
+        exit;
     }
 }
+?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cadastro</title>
+<meta charset="UTF-8">
+<title>Novo Autor</title>
+<link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <h1>ola</h1>
+
+<div class="container">
+
+<h1>Cadastrar Autor</h1>
+
+<?php if($erro): ?>
+<div class="msg erro"><?= $erro ?></div>
+<?php endif; ?>
+
+<form method="POST">
+
+<input
+type="text"
+name="nome"
+placeholder="Nome">
+
+<input
+type="text"
+name="nacionalidade"
+placeholder="Nacionalidade">
+
+<input
+type="date"
+name="data_nascimento">
+
+<button type="submit">
+Salvar
+</button>
+
+</form>
+
+</div>
+
 </body>
 </html>
