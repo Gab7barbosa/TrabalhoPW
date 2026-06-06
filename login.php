@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             <?php endif; ?>
 
-            <form method="POST" class="space-y-6">
+            <form method="POST" action=""class="space-y-6">
                 <!-- Email Field -->
                 <div class="space-y-2">
                     <label for="email" class="text-sm font-semibold text-slate-300 block">E-mail</label>

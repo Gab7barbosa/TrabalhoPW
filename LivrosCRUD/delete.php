@@ -1,27 +1,17 @@
 <?php
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/conexao.php';
 
-require_once "../conexao.php";
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-$id = filter_input(
-    INPUT_GET,
-    'id',
-    FILTER_VALIDATE_INT
-);
-
-if(!$id){
-    header("Location:index.php");
+if (!$id) {
+    header('Location: index.php');
     exit;
 }
 
-$stmt = $pdo->prepare(
-    "DELETE FROM mangas WHERE id=?"
-);
-
+$stmt = $pdo->prepare("DELETE FROM mangas WHERE id = ?");
 $stmt->execute([$id]);
 
-header(
-    "Location:index.php?msg=Mangá excluído com sucesso"
-);
-
+header('Location: index.php?msg=Mangá excluído com sucesso');
 exit;
 ?>

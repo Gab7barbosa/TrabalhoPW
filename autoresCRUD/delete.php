@@ -1,27 +1,17 @@
 <?php
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/conexao.php';
 
-require_once "../conexao.php";
+$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-$id = filter_input(
-    INPUT_GET,
-    'id',
-    FILTER_VALIDATE_INT
-);
-
-if(!$id){
-    header("Location:index.php");
+if (!$id) {
+    header('Location: index.php');
     exit;
 }
 
-$sql = "DELETE FROM autores WHERE id=?";
-
-$stmt = $pdo->prepare($sql);
-
+$stmt = $pdo->prepare("DELETE FROM autores WHERE id = ?");
 $stmt->execute([$id]);
 
-header(
-    "Location:index.php?msg=Autor excluído com sucesso"
-);
-
+header('Location: index.php?msg=Autor excluído com sucesso');
 exit;
 ?>
