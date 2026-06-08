@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: mangastory_app
+    ports:
+      - "8080:80"
+    environment:
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASS=secret
+      - DB_NAME=mangastory
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html
+    networks:
+      - mangastory_network
+
+  db:
+    image: mysql:8.0
+    container_name: mangastory_db
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=mangastory
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - mangastory_network
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: mangastory_phpmyadmin
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8090:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_PASSWORD=secret
+    networks:
+      - mangastory_network
+
+volumes:
+  db_data:
+
+networks:
+  mangastory_network:
+    driver: bridge
