@@ -2,7 +2,6 @@
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/conexao.php';
 
-// Determine root prefix for relative links
 $root_prefix = '';
 if (!file_exists('login.php') && file_exists('../login.php')) {
     $root_prefix = '../';
@@ -20,9 +19,7 @@ $is_vendas = (strpos($current_page, 'VendasCRUD') !== false);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= isset($page_title) ? htmlspecialchars($page_title) . ' | MangaStore' : 'MangaStore' ?></title>
-    <!-- Tailwind CSS Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -38,11 +35,11 @@ $is_vendas = (strpos($current_page, 'VendasCRUD') !== false);
                             50: '#f5f3ff',
                             100: '#ede9fe',
                             200: '#ddd6fe',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            800: '#3730a3',
-                            900: '#312e81',
+                            500: '#ffaf64',
+                            600: 'rgb(252, 153, 24)',
+                            700: '#fda500',
+                            800: '#a37130',
+                            900: '#814f2e',
                         }
                     }
                 }
@@ -57,7 +54,6 @@ $is_vendas = (strpos($current_page, 'VendasCRUD') !== false);
 </head>
 <body class="h-full flex flex-col md:flex-row overflow-hidden">
 
-    <!-- Mobile Header -->
     <div class="md:hidden flex items-center justify-between bg-slate-950 text-white p-4 z-20 shadow-md">
         <div class="flex items-center space-x-2">
             <span class="text-xl">📖</span>
@@ -70,13 +66,10 @@ $is_vendas = (strpos($current_page, 'VendasCRUD') !== false);
         </button>
     </div>
 
-    <!-- Sidebar Overlay for Mobile -->
     <div id="sidebar-overlay" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-30 transition-opacity duration-300 md:hidden"></div>
 
-    <!-- Sidebar Navigation -->
     <aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-slate-950 text-slate-300 transform -translate-x-full transition-transform duration-300 ease-in-out z-40 flex flex-col justify-between shadow-2xl md:relative md:translate-x-0 md:z-10">
         <div>
-            <!-- Sidebar Header -->
             <div class="h-20 flex items-center px-6 bg-slate-900 border-b border-slate-800">
                 <a href="<?= $root_prefix ?>index.php" class="flex items-center space-x-3 group">
                     <span class="text-3xl transform group-hover:scale-110 transition-transform duration-200">📖</span>
@@ -84,9 +77,8 @@ $is_vendas = (strpos($current_page, 'VendasCRUD') !== false);
                 </a>
             </div>
 
-            <!-- Navigation Links -->
             <nav class="mt-6 px-4 space-y-2">
-                <!-- Dashboard -->
+
                 <a href="<?= $root_prefix ?>index.php" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group <?= $is_dashboard ? 'bg-brand-600 text-white shadow-lg shadow-brand-600/30' : 'hover:bg-slate-900 hover:text-white' ?>">
                     <svg class="h-5 w-5 <?= $is_dashboard ? 'text-white' : 'text-slate-400 group-hover:text-white' ?>" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -95,7 +87,7 @@ $is_vendas = (strpos($current_page, 'VendasCRUD') !== false);
                 </a>
 
                 <!-- Mangás -->
-                <a href="<?= $root_prefix ?>LivrosCRUD/index.php" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group <?= $is_mangas ? 'bg-brand-600 text-white shadow-lg shadow-brand-600/30' : 'hover:bg-slate-900 hover:text-white' ?>">
+                <a href="<?= $root_prefix ?>mangasCRUD/index.php" class="flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group <?= $is_mangas ? 'bg-brand-600 text-white shadow-lg shadow-brand-600/30' : 'hover:bg-slate-900 hover:text-white' ?>">
                     <svg class="h-5 w-5 <?= $is_mangas ? 'text-white' : 'text-slate-400 group-hover:text-white' ?>" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
@@ -120,7 +112,6 @@ $is_vendas = (strpos($current_page, 'VendasCRUD') !== false);
             </nav>
         </div>
 
-        <!-- Sidebar Footer / User Logout -->
         <div class="p-4 bg-slate-900 border-t border-slate-800">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3 overflow-hidden">
@@ -141,7 +132,5 @@ $is_vendas = (strpos($current_page, 'VendasCRUD') !== false);
         </div>
     </aside>
 
-    <!-- Main Content Area -->
     <main class="flex-1 flex flex-col min-w-0 overflow-y-auto bg-slate-50 relative p-6 md:p-8">
-        <!-- Content wrapper -->
         <div class="max-w-7xl mx-auto w-full space-y-6">

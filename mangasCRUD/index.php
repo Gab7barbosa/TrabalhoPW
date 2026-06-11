@@ -21,7 +21,6 @@ $page_title = 'Mangás';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 
-<!-- Page Header -->
 <div class="flex items-center justify-between mb-8">
     <div>
         <h1 class="text-2xl font-extrabold text-slate-800">Mangás</h1>
@@ -33,7 +32,6 @@ require_once __DIR__ . '/../includes/header.php';
     </a>
 </div>
 
-<!-- Flash Message -->
 <?php if (isset($_GET['msg'])): ?>
     <div class="mb-6 flex items-center space-x-3 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-emerald-700 text-sm font-medium">
         <svg class="h-5 w-5 text-emerald-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
@@ -41,7 +39,6 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
 <?php endif; ?>
 
-<!-- Table -->
 <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
     <?php if (empty($mangas)): ?>
         <div class="px-6 py-16 text-center">

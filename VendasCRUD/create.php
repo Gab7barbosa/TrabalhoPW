@@ -1,5 +1,4 @@
 <?php
-// All PHP logic BEFORE any HTML output
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/conexao.php';
 
@@ -27,7 +26,6 @@ $page_title = 'Nova Venda';
 require_once __DIR__ . '/../includes/header.php';
 ?>
 
-<!-- Page Header -->
 <div class="flex items-center space-x-4 mb-8">
     <a href="index.php" class="p-2 rounded-xl hover:bg-slate-100 text-slate-500 hover:text-slate-700 transition-colors">
         <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
@@ -46,7 +44,6 @@ require_once __DIR__ . '/../includes/header.php';
     </div>
 <?php endif; ?>
 
-<!-- Form Card -->
 <div class="max-w-xl bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
     <form method="POST" class="space-y-5">
 

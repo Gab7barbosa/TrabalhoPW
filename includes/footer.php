@@ -1,7 +1,6 @@
         </div>
     </main>
 
-    <!-- Mobile Navigation Toggle Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuBtn = document.getElementById('mobile-menu-btn');

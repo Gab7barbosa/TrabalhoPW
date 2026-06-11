@@ -1,9 +1,9 @@
 <?php
 
-$host = "localhost";
-$dbname = "manga_store";
+$host = "db";
+$dbname = "mangastory";
 $user = "root";
-$password = "";
+$password = "secret";
 
 try {
 

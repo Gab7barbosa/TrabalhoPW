@@ -11,7 +11,8 @@ services:
       - DB_PASS=secret
       - DB_NAME=mangastory
     depends_on:
-      - db
+      db:
+        condition: service_healthy 
     volumes:
       - .:/var/www/html
     networks:
@@ -28,8 +29,15 @@ services:
       - MYSQL_DATABASE=mangastory
     volumes:
       - db_data:/var/lib/mysql
+      - ./database.sql:/docker-entrypoint-initdb.d/database.sql 
     networks:
       - mangastory_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-psecret"]
+      interval: 5s      # testa a cada 5s
+      timeout: 5s       # aguarda 5s por resposta
+      retries: 10       # tenta 10 vezes antes de falhar
+      start_period: 30s # dá 30s iniciais para o MySQL subir
 
   phpmyadmin:
     image: phpmyadmin

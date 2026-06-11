@@ -2,7 +2,6 @@
 include "includes/conexao.php";
 session_start();
 
-// If already authenticated, redirect to the dashboard
 if (isset($_SESSION['usuario_id'])) {
     header('Location: index.php');
     exit();
@@ -37,9 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | MangaStore</title>
-    <!-- Tailwind CSS Play CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -55,11 +52,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             50: '#f5f3ff',
                             100: '#ede9fe',
                             200: '#ddd6fe',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            800: '#3730a3',
-                            900: '#312e81',
+                            500: '#f1d063',
+                            600: '#e5a546',
+                            700: '#ca8b38',
+                            800: '#a36830',
+                            900: '#81602e',
                         }
                     }
                 }
@@ -142,7 +139,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </form>
         </div>
         
-        <!-- Hint for Tester -->
         <p class="text-center text-xs text-slate-500 mt-6">
             Acesso de teste: <span class="text-slate-400">admin@admin.com</span> / <span class="text-slate-400">admin123</span>
         </p>
