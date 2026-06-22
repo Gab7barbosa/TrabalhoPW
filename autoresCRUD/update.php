@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "UPDATE autores SET nome = ?, nacionalidade = ?, data_nascimento = ? WHERE id = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$nome, $nacionalidade, $data_nascimento, $id]);
-        header('Location: index.php?msg=Autor atualizado com sucesso');
+        header('Location: index.php?msg=atualizado');
         exit;
     }
 }
