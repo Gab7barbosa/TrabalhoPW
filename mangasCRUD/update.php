@@ -1,5 +1,5 @@
 <?php
-// All PHP logic BEFORE any HTML output
+
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/conexao.php';
 
