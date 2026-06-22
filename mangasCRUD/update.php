@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "UPDATE mangas SET titulo = ?, genero = ?, preco = ?, autor_id = ? WHERE id = ?";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$titulo, $genero, $preco, $autor_id, $id]);
-        header('Location: index.php?msg=Mangá atualizado com sucesso');
+        header('Location: index.php?msg=atualizado');
         exit;
     }
 }
