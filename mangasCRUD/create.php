@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "INSERT INTO mangas (titulo, genero, preco, autor_id) VALUES (?, ?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$titulo, $genero, $preco, $autor_id]);
-        header('Location: index.php?msg=Mangá cadastrado com sucesso');
+        header('Location: index.php?msg=registrado');
         exit;
     }
 }
