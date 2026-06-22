@@ -12,6 +12,6 @@ if (!$id) {
 $stmt = $pdo->prepare("DELETE FROM autores WHERE id = ?");
 $stmt->execute([$id]);
 
-header('Location: index.php?msg=Autor excluído com sucesso');
+header('Location: index.php?msg=excluido');
 exit;
 ?>
