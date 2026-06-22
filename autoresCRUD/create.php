@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "INSERT INTO autores (nome, nacionalidade, data_nascimento) VALUES (?, ?, ?)";
         $stmt = $pdo->prepare($sql);
         $stmt->execute([$nome, $nacionalidade, $data_nascimento]);
-        header('Location: index.php?msg=Autor cadastrado com sucesso');
+        header('Location: index.php?msg=cadastrado');
         exit;
     }
 }
